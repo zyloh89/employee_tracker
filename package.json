@@ -1,0 +1,19 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "CLi application to manage company's employee",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zyloh89/homework_week_12.git"
+  },
+  "author": "Ziyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zyloh89/homework_week_12/issues"
+  },
+  "homepage": "https://github.com/zyloh89/homework_week_12#readme"
+}
