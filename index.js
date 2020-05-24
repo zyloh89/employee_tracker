@@ -32,7 +32,8 @@ function start() {
             choices: [
                 "Add departments, roles, employees",
                 "View departments, roles, employees",
-                "Update employee roles"
+                "Update employee roles",
+                "Exit"
             ]
     }).then(function(result) {
         if(result.mainpage === "Add departments, roles, employees") {
