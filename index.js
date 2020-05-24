@@ -235,6 +235,7 @@ function addRole(title, salary, department) {
     connection.query("INSERT INTO role SET ?", role, function (err) {
         if (err) throw err;
         console.log(title + " role added to database");
+        start();
     });
 }
 
@@ -250,6 +251,7 @@ function addEmployee(firstname, lastname, role, manager) {
     connection.query("INSERT INTO employee SET ?", employee, function (err) {
         if (err) throw err;
         console.log(firstname + " " + lastname + " new employee added to database")
+        start();
     })
 
 }
