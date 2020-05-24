@@ -216,11 +216,11 @@ function setNewRoleId(data, result) {
 function addDepartment(name) {
     connection.query("INSERT INTO department SET ?", 
     {
-        name: name
+        department_name: name
     },
     function (err) {
         if (err) throw err;
-        console.log(name + "department added to database");
+        console.log(name + " department added to database");
         start();
     });
 }
