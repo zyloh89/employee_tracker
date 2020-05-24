@@ -7,7 +7,7 @@ const consoleTable = require("console.table");
 
 const connection = mysql.createConnection({ 
     host: 'localhost',
-    user: 'root',
+    user: 'root', //Enter own username
     password: '', //Enter own password
     database: 'employees_db'
  });
@@ -72,7 +72,13 @@ function addFunction() {
                     {
                         type: "input",
                         name: "department_name",
-                        message: "What is the department name?"
+                        message: "What is the department name?",
+                        validate: function(value) {
+                            if (value.length <31) {
+                                return true;
+                            }
+                            return `Department name has to be less than 30 characters`;
+                        }
                     }).then(function(result) {
                         addDepartment(result.department_name);
                     });
@@ -82,17 +88,37 @@ function addFunction() {
                     {
                         type: "input",
                         name: "title",
-                        message: "What is the title for the role?"
+                        message: "What is the title for the role?",
+                        validate: function(value) {
+                            if (value.length <31) {
+                                return true;
+                            }
+                            return "Title has to be less than 30 characters";
+                        }
                     },
                     {
                         type: "input",
                         name: "salary",
-                        message: "What is the salary for the role?"
+                        message: "What is the salary for the role?",
+                        validate: function(value) {
+                            const num = value.match(/^[0-9]$/);
+                            if (num) {
+                                return true;
+                            }
+                            return "Please enter a valid salary amount.";
+                        }
                     },
                     {
                         type: "input",
                         name: "department",
-                        message: "Which department does the role fall into? Please enter department id."
+                        message: "Which department does the role fall into? Please enter department id.",
+                        validate: function(value) {
+                            const num = value.match(/^[0-9]$/);
+                            if (num) {
+                                return true;
+                            }
+                            return "Please enter a valid department number.";
+                        }
                     }
                 ]).then(function(result) {
                     addRole(result.title, result.salary, result.department);
@@ -103,22 +129,48 @@ function addFunction() {
                     {
                         type: "input",
                         name: "firstname",
-                        message: "What is the first name of the employee?"
+                        message: "What is the first name of the employee?",
+                        validate: function(value) {
+                            if (value.length <31) {
+                                return true;
+                            }
+                            return "First name has to be less than 30 characters";
+                        }
                     },
                     {
                         type: "input",
                         name: "lastname",
-                        message: "What is the last name of the employee?"
+                        message: "What is the last name of the employee?",
+                        validate: function(value) {
+                            if (value.length <31) {
+                                return true;
+                            }
+                            return "Last name has to be less than 30 characters";
+                        }
                     },
                     {
                         type: "input",
                         name: "role",
-                        message: "What is the role of the employee? Please enter role id."
+                        message: "What is the role of the employee? Please enter role id.",
+                        validate: function(value) {
+                            const num = value.match(/^[0-9]$/);
+                            if (num) {
+                                return true;
+                            }
+                            return "Please enter a valid role id.";
+                        }
                     },
                     {
                         type: "input",
                         name: "manager",
-                        message: "Who is the manager of the employee? Please enter manager id, if required."
+                        message: "Who is the manager of the employee? Please enter manager id.",
+                        validate: function(value) {
+                            const num = value.match(/^[0-9]$/);
+                            if (num) {
+                                return true;
+                            }
+                            return "Please enter a valid manager id.";
+                        }
                     }
                 ]).then(function(result) {
                     addEmployee(result.firstname, result.lastname, result.role, result.manager);
