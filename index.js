@@ -128,6 +128,31 @@ function addFunction() {
         });
 }
 
+// View Function
+
+function viewFunction() {
+    inquirer.prompt(
+        {
+            type: "list",
+            name: "viewtables",
+            message: "Which database table would you like to view?",
+            choices: [
+                "department",
+                "role",
+                "employee",
+                "cancel view"
+            ]
+    }).then (function(result) {
+        if (result.viewtables === "cancel view") {
+            start();
+        }
+        else {
+            viewTables(result.viewtables)
+        }
+    })
+}
+
+
 // Update Function
 
 function updateFunction() {
@@ -215,7 +240,7 @@ function addRole(title, salary, department) {
 
 
 // Add Employee Query
-function addEmployee (firstname, lastname, role, manager) {
+function addEmployee(firstname, lastname, role, manager) {
     const employee = {
         first_name: firstname,
         last_name: lastname,
@@ -227,4 +252,14 @@ function addEmployee (firstname, lastname, role, manager) {
         console.log(firstname + " " + lastname + " new employee added to database")
     })
 
+}
+
+// View Database Tables
+
+function viewTables(table) {
+    connection.query("SELECT * FROM " + table, function (err, result) {
+        if (err) throw err;
+        console.table(result);
+        start();
+    });
 }
